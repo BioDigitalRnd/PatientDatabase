@@ -1,0 +1,146 @@
+// Example JSON data if a patient with ID 426 was requested from server and compiled from databases
+
+{
+	"id": 426,
+	"entered_into_system": "Tue Aug 31 2021 10:29:19 GMT+0100 (British Summer Time)",
+	"name": "Bob James",
+	"sex": "male",
+	"age": 31,
+	"date_of_birth": "1990-05-24",
+	"race_and_ethnicity": "White British",
+	"orientation": "heterosexual",
+	"blood_type": "AB+",
+	"height": {
+		"value": 183.7,
+		"unit": "cm",
+		"recorded_at": "Tue Aug 31 2021 10:29:19 GMT+0100 (British Summer Time)"
+	},
+	"weight": {
+		"value": 75.4,
+		"unit": "kg",
+		"recorded_at": "Tue Aug 31 2021 10:29:19 GMT+0100 (British Summer Time)"
+	},
+	"body_mass_index": {
+		"value": 22.9,
+		"recorded_at": "Tue Aug 31 2021 10:29:19 GMT+0100 (British Summer Time)"
+	},
+	"allergies": [
+		{
+			"allergy": "peanuts",
+			"reactions": [
+				{
+					"reaction": "anaphylaxis",
+					"severity": "severe"
+				},
+				{
+					"reaction": "rash",
+					"severity": "mild"
+				}
+			]
+		},
+		{
+			"allergy": "gluten",
+			"reactions": [
+				{
+					"reaction": "constipation",
+					"severity": "severe"
+				}
+			]
+		}
+	],
+	"diet": "vegetarian", // subjective; up to medical professionals to decide classification
+	"smoking": "non-smoker",
+	"drinking": "teetotal",
+	"exercise": "slightly active", // subjective; up to medical professionals to decide classification
+	"sleep": {
+		"average_hours_sleep": 7.4,
+		"sleep_pattern": "monophasic"
+	},
+	"occupation": "dentist",
+	"marital_status": {
+		"status": "married",
+		"number_of_marriages": 2,
+		"marital_history": {
+			"current": {
+				"date_of_marriage": "Tue Aug 31 2021 10:29:19 GMT+0100 (British Summer Time)",
+				"date_of_divorce": null,
+				"length_of_marriage": 48231284901923, // value in seconds easier to store, calculable from start and current timestamps, and can be formatted into other time periods
+				"reason_of_divorce": null,
+				"number_of_children": 1
+			},
+			"previous": [
+				{
+					"date_of_marriage": "Tue Aug 31 2021 10:29:19 GMT+0100 (British Summer Time)",
+					"date_of_divorce": "Tue Aug 31 2021 10:29:19 GMT+0100 (British Summer Time)",
+					"length_of_marriage": 48231284901923, // value in seconds easier to store, calculable from start and end timestamps, and can be formatted into other time periods
+					"reason_of_divorce": "infidelity",
+					"number_of_children": 3
+				}
+			]
+		}
+	},
+	"sexual activity": null,
+	"birth_control_method": null,
+	"medical_history" {
+		"medication": {
+			"current": [
+				{
+					"medicament": "paracetamol",
+					"prescription": "over the counter",
+					"started_treatment": "Tue Aug 31 2021 10:29:19 GMT+0100 (British Summer Time)",
+					"ended_treatment": null,
+					"length_of_treatment": null,
+					"dose": {
+						"value": 500,
+						"unit": "mg",
+						"form": "tablet",
+						"frequency": {
+							"value": 2,
+							"unit": "daily"
+						}
+					},
+					"diseases": [
+						"fever",
+						"headache"
+					]
+				},
+				{
+					"medicament": "ibuprofen",
+					"prescription": "GP",
+					"started_treatment": "Tue Aug 31 2021 10:29:19 GMT+0100 (British Summer Time)",
+					"ended_treatment": null,
+					"length_of_treatment": null,
+					"dose": {
+						"value": 2500,
+						"unit": "mg",
+						"form": "tablet",
+						"frequency": {
+							"value": 1,
+							"unit": "daily"
+						}
+					},
+					"diseases": ["toothache"]
+				}
+			],
+			"previous": [
+				{
+					"medicament": "aspirin",
+					"prescription": "GP",
+					"started_treatment": "Tue Aug 31 2021 10:29:19 GMT+0100 (British Summer Time)",
+					"ended_treatment": "Tue Aug 31 2021 10:29:19 GMT+0100 (British Summer Time)",
+					"length_of_treatment": 7432572913342, // value in seconds easier to store, calculable from start and end timestamps, and can be formatted into other time periods
+					"dose": {
+						"value": 80,
+						"unit": "mg",
+						"form": "tablet",
+						"frequency": {
+							"value": 0.5,
+							"unit": "daily"
+						}
+					},
+					"diseases": ["influenza"]
+				}
+			]
+		},
+	}
+}
