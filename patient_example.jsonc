@@ -1,5 +1,3 @@
-// Example JSON data if a patient with ID 426 was requested from server and compiled from databases
-
 {
 	"id": 426,
 	"entered_into_system": "Tue Aug 31 2021 10:29:19 GMT+0100 (British Summer Time)",
@@ -81,7 +79,7 @@
 	},
 	"sexual activity": null,
 	"birth_control_method": null,
-	"medical_history" {
+	"medical_history": {
 		"medication": {
 			"current": [
 				{
