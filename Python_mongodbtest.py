@@ -11,6 +11,6 @@ coll = db.get_collection("PatientData")
 
 datab = coll.find_one({"first_name": "Bob"})
 print(datab['weight']['value'])
-coll.update_one({"id": 575
+coll.update_one({"id": 426
  {"$set": {"id": 432}})
 
