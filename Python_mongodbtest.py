@@ -1,7 +1,3 @@
-
-
-from random import randint
-from re import X
 from pymongo import MongoClient
 from pprint import pprint
 
