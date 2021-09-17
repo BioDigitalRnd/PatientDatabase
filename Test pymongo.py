@@ -1,5 +1,5 @@
 
-# install mongodb extension 
+# install mongodb extension
 # on cmd:
 # pip install pymongo
 # pip install pandas
@@ -12,7 +12,7 @@ import sched, time
 import pandas as pd
 
 from random import randint
-from pandas.core.algorithms import take_2d_multi
+from pandas.io.pytables import ClosedFileError
 from pymongo import MongoClient, collection
 from pprint import pprint
 
@@ -93,7 +93,7 @@ schedule = sched.scheduler(time.time, time.sleep)
 
 # newid = itertools.count()
 
-# global a 
+# global a
 # a = 1
 
 # patient1 = {
@@ -111,11 +111,16 @@ schedule = sched.scheduler(time.time, time.sleep)
 
 dat = pd.read_excel (r'C:\Users\Aixzyl\Documents\Python\DataTest.xlsx')
 df = pd.DataFrame(dat,columns= ['age'])
+columns = [0]
+pf = pd.read_excel(r'C:\Users\Aixzyl\Documents\Python\DataTest.xlsx', sheet_name = 0, usecols = columns)
+# df = pd.read_excel(r'C:\Users\Aixzyl\Documents\Python\DataTest.xlsx', na_values="Missing", sheet_name = 0, usecols = columns) # if data is missing
+# print(pf.sort_values(['age'], ascending= False))
+print(pf)
+
 l = pd.array
 head = df.head(1)
 tail = df.tail(100)
 
-print (head)
 
 
 
