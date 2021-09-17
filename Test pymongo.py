@@ -109,7 +109,7 @@ schedule.run()
 #     coll.insert_one([patient1])
 #     a += 1
 
-dat = pd.read_excel (r'C:\Users\Aixzyl\Documents\Python\DataTest.xlsx')
+dat = pd.read_excel (r'C:\Users\Aixzyl\Documents\Python\DataTest.xlsx') #Reading Excel File
 df = pd.DataFrame(dat,columns= ['age'])
 columns = [0]
 pf = pd.read_excel(r'C:\Users\Aixzyl\Documents\Python\DataTest.xlsx', sheet_name = 0, usecols = columns)
