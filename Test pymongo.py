@@ -4,6 +4,7 @@
 # pip install pymongo
 # pip install pandas
 # pip install openpyxl
+# pip install xlrd
 
 from os import name, read
 from re import A, L
@@ -64,62 +65,102 @@ def linefunc(num):
 num = 0
 ntsqRan = False
 
-def nametimeseq(nsc): #Changes the Name every interval currently 5 sec
-    global num
-    global ntsqRan
-    print("name")
-    func = linefunc(0)
-    if num <= (len(func) - 1):
-        sname = ""
-        for x in func[num]:
-            sname += "" + x
-        print(sname)
-        schedule.enter(5, 1, nametimeseq, (nsc,))
-        if ntsqRan is False:
-            oname = datab["name"] #old name        ||  once changed data is no longer retrievable fix by checking the array instead
-            ntsqRan = True
-        else:
-            curname = ""
-            for x in func[num - 1]:
-                curname += "" + x
-                oname =  curname
-        cname = {"name": oname} #cur name
-        nname = {"$set": {"name": sname}} # set new name
-        coll.update_one(cname, nname)
-        num += 1
+# def nametimeseq(nsc): #Changes the Name every interval currently 5 sec
+#     global num
+#     global ntsqRan
+#     print("name")
+#     func = linefunc(0)
+#     if num <= (len(func) - 1):
+#         sname = ""
+#         for x in func[num]:
+#             sname += "" + x
+#         print(sname)
+#         schedule.enter(5, 1, nametimeseq, (nsc,))
+#         if ntsqRan is False:
+#             oname = datab["name"] #old name        ||  once changed data is no longer retrievable fix by checking the array instead
+#             ntsqRan = True
+#         else:
+#             curname = ""
+#             for x in func[num - 1]:
+#                 curname += "" + x
+#                 oname =  curname
+#         cname = {"name": oname} #cur name
+#         nname = {"$set": {"name": sname}} # set new name
+#         coll.update_one(cname, nname)
+#         num += 1
 
-schedule.enter(5, 1, nametimeseq, (schedule,))
-schedule.run()
+# schedule.enter(5, 1, nametimeseq, (schedule,))
+# schedule.run()
 
-# newid = itertools.count()
+newid = itertools.count()
 
-# global a
-# a = 1
+global a
+a = 1
 
-# patient1 = {
-#     "id" : next(newid),
-#     "name" : "Jane",
-#     "sex" : "Female",
-#     "age" : a,
-#     "date_of_birth" : "1997-08-14",
-#     "race_and_ethnicity" : "Asian British"
-# }
+# def patientassign(psc):
+#     schedule.enter(5, 1, patientassign, (psc,))
+#     func = linefunc(0)
+#     global num
+#     newN = func[num]
+#     patient1 = {
+#         "id" : next(newid),
+#         "name" : newN,
+#         "sex" : "Female",
+#         "age" : a,
+#         "date_of_birth" : "1997-08-14",
+#         "race_and_ethnicity" : "Asian British"
+#     }
+#     print(newN)
+#     num += 1
+#     return patient1
 
-# if (datab == coll.find_one({"id": next(newid)})) != (datab == coll.find_one({"id": 0})):
-#     coll.insert_one([patient1])
-#     a += 1
+# schedule.enter(5, 1, patientassign, (schedule,))
+# schedule.run()
 
-dat = pd.read_excel (r'C:\Users\Aixzyl\Documents\Python\DataTest.xlsx') #Reading Excel File
-df = pd.DataFrame(dat,columns= ['age'])
-columns = [0]
-pf = pd.read_excel(r'C:\Users\Aixzyl\Documents\Python\DataTest.xlsx', sheet_name = 0, usecols = columns)
+# x = 1
+# while x in 5:
+#     lo = patientassign()
+#     coll.insert_one(lo)
+#     x += 1
+
+def ExtractAge():
+    columns = [0]
+    pf = pd.read_excel(r'C:\Users\BioGuest\test\DataTest.xlsx', sheet_name = 0, usecols = columns)
+    head = 1
+    tail = len(pf)
+    x = 1
+    Agearr = []
+    while x in range(head, tail + 1):
+        currV = pf.values[x - 1]
+        addV = str(currV)
+        addV =  addV.replace('.', '')
+        Agearr.append(addV)
+        x += 1
+    print('age array = ' + Agearr[1])
+
+def ExtractSex():
+    columns = [1]
+    pf = pd.read_excel(r'C:\Users\BioGuest\test\DataTest.xlsx', sheet_name = 0, usecols = columns)
+    head = 1
+    tail = len(pf)
+    x = 1
+    Sexarr = []
+    while x in range(head, tail + 1):
+        currV = pf.values[x - 1]
+        addV = str(currV)
+        addV =  addV.replace('.', '')
+        Sexarr.append(addV)
+        x += 1
+    print('sex array = ' + Sexarr[1])
+
+ExtractAge()
+ExtractSex()
+
+
 # df = pd.read_excel(r'C:\Users\Aixzyl\Documents\Python\DataTest.xlsx', na_values="Missing", sheet_name = 0, usecols = columns) # if data is missing
 # print(pf.sort_values(['age'], ascending= False))
-print(pf)
 
 l = pd.array
-head = df.head(1)
-tail = df.tail(100)
 
 
 
