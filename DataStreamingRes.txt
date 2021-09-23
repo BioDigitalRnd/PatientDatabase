@@ -1,0 +1,10 @@
+message broker such as apache kafka, groups these streams into topics, ensuring consistent ordering. kafka also uses replication and can distribute data acriss multiple servers to provide fault tolerance.
+
+quix platform allows you to persist data on a topic-by-topic basis. This provides a compromise, allowing you to store your most important data permanently without wasting resources.
+quix platform uses kafka, altho doesn't depend on it.
+
+Can you meaningfully analyze individual data points in isolation? If not, data streaming might prove to be difficult.
+
+Ways to datastream:
+kafka with aiven.io
+kafka with Quix
