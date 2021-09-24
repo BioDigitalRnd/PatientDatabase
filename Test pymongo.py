@@ -123,9 +123,13 @@ a = 1
 #     coll.insert_one(lo)
 #     x += 1
 
-def ExtractAge():
+Agen = 0
+Sexn = 0
+
+def ExtractAge(asc):
+    schedule.enter(1, 1, ExtractAge, (asc,))
     columns = [0]
-    pf = pd.read_excel(r'C:\Users\BioGuest\test\DataTest.xlsx', sheet_name = 0, usecols = columns)
+    pf = pd.read_excel(r'C:\Users\Aixzyl\Documents\Python\DataTest.xlsx', sheet_name = 0, usecols = columns)
     head = 1
     tail = len(pf)
     x = 1
@@ -136,11 +140,14 @@ def ExtractAge():
         addV =  addV.replace('.', '')
         Agearr.append(addV)
         x += 1
-    print('age array = ' + Agearr[1])
+    global Agen    
+    print('age array = ' + Agearr[Agen])
+    Agen +=1
 
-def ExtractSex():
+def ExtractSex(ssc):
+    schedule.enter(1, 1, ExtractSex, (ssc,))
     columns = [1]
-    pf = pd.read_excel(r'C:\Users\BioGuest\test\DataTest.xlsx', sheet_name = 0, usecols = columns)
+    pf = pd.read_excel(r'C:\Users\Aixzyl\Documents\Python\DataTest.xlsx', sheet_name = 0, usecols = columns)
     head = 1
     tail = len(pf)
     x = 1
@@ -151,7 +158,13 @@ def ExtractSex():
         addV =  addV.replace('.', '')
         Sexarr.append(addV)
         x += 1
-    print('sex array = ' + Sexarr[1])
+    global Sexn 
+    print('sex array = ' + Sexarr[Sexn])
+    Sexn+=1
+
+schedule.enter(1, 1, ExtractAge, (schedule,))
+schedule.enter(1, 1, ExtractSex, (schedule,))
+schedule.run()
 
 ExtractAge()
 ExtractSex()
