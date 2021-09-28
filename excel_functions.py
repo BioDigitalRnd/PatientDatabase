@@ -1,4 +1,4 @@
-# download openpyxl from pypi.org
+# pip install openpyxl (on cmd)
 # NOTE: Ensure excel file is in same directory/folder as python file
 
 import openpyxl as xl
