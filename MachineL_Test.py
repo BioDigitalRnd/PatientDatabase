@@ -6,6 +6,7 @@
 # pip install -U matplotlib
 
 from math import gamma
+from operator import mod
 from numpy.core.numeric import cross
 import pydotplus
 from sklearn.datasets import load_iris
@@ -15,6 +16,7 @@ from IPython.display import Image, display
 # Load libraries
 #Visualize the data
 from pandas import read_csv
+import pandas as pd
 from pandas.plotting import scatter_matrix
 from matplotlib import pyplot
 
@@ -36,17 +38,33 @@ from sklearn.svm import SVC
 # names = ['sepal-length', 'sepal-width', 'petal-length', 'petal-width', 'class']
 # dataset = read_csv(url, names=names)
 
-path = r"C:\Users\BioGuest\test\Sample.csv"
-tag = ['Slept well yesterday?', 'Yesterday was stressful?','Weight (kg)', 'Height (cm)']
-datset = read_csv(path, names=tag)
+# tag = [ 'Slept well yesterday?', 'Yesterday was stressful?' ]
+# columns = [4,5]
+# datset = read_csv(path, names=tag, usecols= columns, header=1)
+path = r"C:\Users\Aixzyl\Documents\Python\diabetes.csv"
+dataset1 = pd.read_csv(path)
+X=dataset1.iloc[:,0:7]
+y=dataset1.iloc[:,8]
 
+# print(X.shape)
+# print(y.shape)
+
+print(X.head())
 # Split-out validation dataset
-array = datset.values
-X = array[:, 1]
-y = array[1,:]
-X_train, X_validation, Y_train, Y_validation = train_test_split(X, y, test_size=0.20, random_state=1)
+# array = datset.values
+# X = array[:,0:6]
+# y = array[:,1]
+X_train, X_validation, Y_train, Y_validation = train_test_split(X, y, test_size=0.33, random_state=7)
 
+# Fit the model on training set
+model1 = LogisticRegression(max_iter=200)
+model1.fit(X_train, Y_train)
 
+model2 = DecisionTreeClassifier()
+model2.fit(X_train, Y_train)
+
+model3 = KNeighborsClassifier()
+model3.fit(X_train, Y_train)
 
 # # Spot Check Algorithms
 # models = []
@@ -58,26 +76,32 @@ X_train, X_validation, Y_train, Y_validation = train_test_split(X, y, test_size=
 # models.append(('SVM', SVC(gamma='auto'))) # Support Vector Machines (SVM).
 
 
-# # Make predictions on validation dataset
+# Make predictions on validation dataset
 # model = SVC(gamma='auto')
 # model.fit(X_train, Y_train)
-# predictions = model.predict(X_validation)
+predictions1 = model1.predict(X_validation)
+predictions2 = model2.predict(X_validation)
+predictions3 = model3.predict(X_validation)
 
-# # Evaluate Predictions
-# print(accuracy_score(Y_validation, predictions))
-# print(confusion_matrix(Y_validation, predictions))
-# print(classification_report(Y_validation, predictions))
+# Evaluate Predictions
+print('Logistic Regression = ' + str(accuracy_score(Y_validation, predictions1)))
+print('Decision Tree = ' + str(accuracy_score(Y_validation, predictions2)))
+print('KNeighborsClassifier = ' + str(accuracy_score(Y_validation, predictions3)))
+
+# print(confusion_matrix(Y_validation, predictions2))
+# print(classification_report(Y_validation, predictions2))
 
 
 # #Evaluate each model in turn
 # results = []
 # names = []
 # for name, model in models:
-#     kfold = StratifiedKFold(n_splits=10, random_state=1, shuffle=True)
+#     kfold = StratifiedKFold(n_splits=5, random_state=1, shuffle=True)
 #     cv_results = cross_val_score(model, X_train, Y_train, cv=kfold, scoring='accuracy')
 #     results.append(cv_results)
 #     names.append(name)
 #     print('%s: %f (%f)' % (name, cv_results.mean(), cv_results.std()))
+
 
 # #Compare Algorithms
 # pyplot.boxplot(results, labels=names)
