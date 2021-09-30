@@ -1,4 +1,4 @@
-# pip install openpyxl (on cmd)
+# download openpyxl from pypi.org
 # NOTE: Ensure excel file is in same directory/folder as python file
 
 import openpyxl as xl
@@ -43,3 +43,17 @@ def process_heart_xl(filename, sheet_name):
 # from excel_functions import process_heart_xl
 #
 # process_heart_xl('heart2.xlsx', 'heart2')
+
+
+def conv_target_xl(filename, sheet_name):
+
+    wb = xl.load_workbook(filename)
+    sheet = wb[sheet_name]
+
+    for row in range(2, sheet.max_row + 1):
+
+        cell_target = sheet.cell(row, 14)
+        if cell_target.value == 2:
+            cell_target.value = 1
+
+    wb.save(filename)
