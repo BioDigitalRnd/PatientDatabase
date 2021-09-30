@@ -31,7 +31,6 @@ Random Forest: large number of trees can make the alogrithm too slow and ineffec
 
 * If the goal is to create a prediction model without care for the variables at play, by all means use a neural network, but you’ll need the resources to do so.
 
-
 Accuracy:
 77.87% Using a decision tree model
 76.13% Using a logistic regression model
@@ -41,3 +40,13 @@ https://bmcendocrdisord.biomedcentral.com/articles/10.1186/s12902-019-0436-6 (ty
 https://www.sciencedirect.com/science/article/pii/S1877050920308024
 https://www.xoriant.com/blog/product-engineering/decision-trees-machine-learning-algorithm.html
 
+Summary:
+
+DT A: historical, demographic, discrete data | missing data has less impact
+DT D: unstable, small changes => massive changes (fix by boosting) | less useful for continuous
+
+RF A: cheap on resources, split load | missing data has very little impact
+RF D: accurate predictions require many trees, fast to train, slow to predict
+
+NN A: can learn and improve quickly over time from initial training data
+NN D: requires large initial dataset for training and testing | may require lots of initial human training and knowledge engineering
